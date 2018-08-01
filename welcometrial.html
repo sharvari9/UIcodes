@@ -463,23 +463,7 @@
                         client_code:c_code,
                         password:pass
             };
-			
-
-
-            
-            function checkpwd(str){
-                var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-                 return re.test(str);
-            }
-
-            function checkform(loginObj)
-            {
-                if(loginObj.uname=="")
-                {
-                    alert("error : username cannot be b")
-                }
-            }
-            console.log('loginObj',loginObj);
+		
 
 var baseUrl='http://localhost:7887/login';
             
@@ -506,37 +490,30 @@ var baseUrl='http://localhost:7887/login';
         	xhr.send(JSON.stringify(loginObj));
         	xhr.onreadystatechange = function() {
             	if (xhr.readyState == 4) {
-                	if (xhr.status == 200) {
+                	if (xhr.status == 200) 
+						{
                     	console.log(xhr.statusText);
                     	document.getElementById("req_text").innerHTML = "Response State : " + xhr.readyState + "Response Text: " + xhr.responseText;
-                    
+						obj = JSON.parse(xhr.response);
                         // console.log("Okay" ,xhr);
-                        if(xhr.responseText!==null)        
+                        if(obj.status==1)        
                                         {					
-
-
-                                            obj = JSON.parse(xhr.response);
-
-                                                                                        console.log('xhr.responseText',xhr.response ,obj.client_code)	;
-
-                            localStorage.setItem('loginResp',JSON.stringify(obj));
-
-                            window.location.href="file:///C:/Users/Admin/Documents/vs/testing1.html";
-
-                        }
-
-
-                	} else {
+											
+											console.log('xhr.responseText',obj)	;
+											localStorage.setItem('loginResp',JSON.stringify(obj));
+											window.location.href="C:/Users/Admin/Documents/vs/securitiespage.html";
+										}
+						} 
+						else {
                     	console.log(xhr.statusText);
                     	document.getElementById("req_text").innerHTML = "Error Code: " + xhr.status + "Error Message: " + xhr.statusText;
-                    	
                         console.log("Not Okay");
                 	}
             	}
         	};
 
-            }      
+        }      
         
-        </script>
+</script>
 </body>
 </html>                            
