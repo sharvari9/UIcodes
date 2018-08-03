@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Welcome DB</title>
+<title>Security Details</title>
+<link rel="shortcut icon" href="Images/title3.png" type="image/icon">
+
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -320,10 +322,10 @@ var options = {
     curveType: 'function',
     legend: { position: 'bottom' },
 	hAxis:{title:'Date'},
-	vAxis:{title:'MarketPrice in $'},
-	fontName: 'Times new Roman',
-	italic:'false',
-	bold:'true'
+	vAxis:{title:'MarketPrice (in $)',
+	bold: false,    // true or false
+    italic: false
+	}
 	
 };
 
@@ -342,7 +344,7 @@ chart.draw(data, options);
 <!-- ---------------------------------------------- -->
         <nav class="navbar navbar-default navbar-expand-lg navbar-light">
                 <div class="navbar-header d-flex col">
-                    <a class="navbar-brand" href="#">Exchange<b>Clearance</b></a>  		
+                    <div class="navbar-brand" href="#">Exchange<b>Clearance</b></div>  		
                     <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
                         <span class="navbar-toggler-icon"></span>
                         <span class="icon-bar"></span>
@@ -359,7 +361,7 @@ chart.draw(data, options);
             
                     </ul>
                     <ul class="nav navbar-nav navbar-right ml-auto">			
-                        <li class="nav-item"><a href="#" class="btn btn-primary mt-1 mb-1">Logout</a></li>
+                        <li class="nav-item"><a href="welcometrial.html" class="btn btn-primary mt-1 mb-1" onclick="noBack()">Logout</a></li>
                     </ul>
                 </div>
         </nav>
@@ -386,7 +388,7 @@ chart.draw(data, options);
                         </p>
                     </div> -->
 
-                    <div id="sector2" class="col-sm-6 table" style="background-color: white; font-size: 10px ; height:150px ; width: 180px ; padding-top: 50px">
+                    <div id="sector2" class="col-sm-6 table" style="background-color: white; font-size: 10px ; height:150px ; width: 180px ; padding-top: 30px ; padding-bottom: 50px">
                             <table class="table">
                             <tbody>
                             <tr>
@@ -397,12 +399,15 @@ chart.draw(data, options);
                             </tr>
                             <tr>
                                 <td id="country">country</td>
-                            </tr>
+							</tr>
+							<tr>
+								<td >08/03/2018</td>
+							</tr>
                         
                             </tbody>
                             </table>
 					</div>
-					<div style = "padding-top: 50px">
+					<div style = "padding-top: 80px">
 							<a href="securitiespage.html" class="btn btn-primary" style=" width: 200px">My Performance Summary</a>
 						</div>
                 </aside>
@@ -421,34 +426,43 @@ chart.draw(data, options);
 			 		<hr style="border-width: 2px">
                      
                      <div class = "result">
-			 			<div id = "result_loss">
-			 				<div id = "security_code_in" style="font: 24px arial ; color: blue ">
-					 			Market Price
-					 		</div>
-					 		<div id = "security_price" style="font: 42px arial ; color: green ; float:right ; padding-right: 250px">
-					 			Price
-					 		</div>
-					 		<i class="fa fa-sort-asc" aria-hidden="true" style = "font-size:36px ; color:green ; float: right ; z-index: 1"></i>
-			 			</div>
+							<div id = "result_loss" >
 
 
-			 			<!-- <div id = "result_profit">
-			 				<h6 id = "security_code" style="font: 41px arial ; color: blue">
-					 			Security Code
-					 		</h6>
-					 		<h1 id = "security_price" style="font: 42px arial ; color: green">
-					 			Price
-					 		</h1>
-					 		<i class="fa fa-sort-desc" aria-hidden="true" style = "font-size:12px;color:green"></i>
-			 			</div> -->
+									<div  id = "market_price_1" style="font: 42px arial ; color: blue ; float:left ">
+										 Market Price
+									</div>
+									<div  id = "security_gain_1" style="float:right;font: 42px arial ; color: red  ; padding-right: 150px">
+										Price
+									</div>
+									<i class="fa fa-sort-desc" aria-hidden="true" style = "float:right ; font-size:36px ; color:red  ; z-index: 1"></i>
+							</div>
+	   
+	   
+							<div id = "result_profit">
+									<div  id = "market_price_2" style="font: 42px arial ; color: blue ; float:left ">
+											Market Price
+									</div>
+									<div  id = "security_gain_2" style="float:right;font: 42px arial ; color: green  ; padding-right: 150px">
+											Price
+									</div>
+									<i class="fa fa-sort-asc" aria-hidden="true" style = "float:right ; font-size:36px ; color:green  ; z-index: 1"></i>		
+							</div>
 			 		</div>
-
+					
 			 		<div>
-                        <div id="sector2" class="col-sm-6 table" style="background-color: white; font-size:10px; height:120px ; width: 60% ; padding-top: 50px">
+						Note: All units in $
+                        <div id="sector2" class="col-sm-6 table" style="background-color: white; font-size:10px; height:220px ; width: 60% ; padding-top: 50px">
                                     <table class="table">
                                     <tbody>
+									
+									<tr>
+                                        <td>Current Bond Price(in $)</td>
+                                        <td id="currrentPrice" ></td>
+                                        <!-- <td>def@somemail.com</td> -->
+                                    </tr>
                                     <tr>
-                                        <td>Notional</td>
+                                        <td>Notional(in $)</td>
                                         <td id="notionalvalue" ></td>
                                         <!-- <td>def@somemail.com</td> -->
                                     </tr>      
@@ -461,6 +475,17 @@ chart.draw(data, options);
                                         <td>Coupon Frequency</td>
                                         <td id="couponfreq"></td>
                                         <!-- <td>mary@example.com</td> -->
+									</tr>
+									<tr>
+											<td>Buy Price(in $)</td>
+											<td id="buyprice" ></td>
+											<!-- <td>def@somemail.com</td> -->
+									</tr>
+									
+									<tr>
+                                        <td>Trade Date</td>
+                                        <td id="tradeDate"></td>
+                                        <!-- <td>mary@example.com</td> -->
                                     </tr>
                                 
                                     </tbody>
@@ -470,23 +495,23 @@ chart.draw(data, options);
 		                    <table class="table">
                             <tbody>
                             <tr>
-                                <td>Clean Price</td>
+                                <td>Clean Price (in $)</td>
                                 <td id="cleanprice"></td>
                                 <!-- <td>def@somemail.com</td> -->
                             </tr>      
                             <tr>
-                                <td>Accrued Interest</td>
+                                <td>Accrued Interest (in $)</td>
                                 <td id="accruedinterest"></td>
                                 <!-- <td>john@example.com</td> -->
                             </tr>
                             <tr>
-                                <td>Dirty Price</td>
+                                <td>Dirty Price (in $)</td>
                                 <td id="dirtyprice"></td>
                                 <!-- <td>mary@example.com</td> -->
                             </tr>
                             <tr>
                                 
-                                <td><b>Total gain/loss</b></td>
+                                <td><b>Total Profit/Loss (in $)</b></td>
                                 <td id="totgain"><b></b></td>
                                 
                                 <!-- <td>july@example.com</td> -->
@@ -503,11 +528,11 @@ chart.draw(data, options);
 			  </div>
 		  
         </div>
-        
-        <script>
-
-            // console.log('loginResp',localStorage.getItem('loginResp'));
-            var c_code =JSON.parse(localStorage.getItem('loginResp'));
+		
+		
+		<script>
+			window.onload = function() {
+			var c_code =JSON.parse(localStorage.getItem('loginResp'));
             console.log('c_code ===> ',c_code.client_code );
              var id=c_code.client_code
             
@@ -548,24 +573,121 @@ chart.draw(data, options);
             	if (xhr.readyState == 4) {
                 	if (xhr.status == 200) {
                     	console.log(xhr.statusText);
-                         console.log(' xhr.responseText ===>', xhr.responseText)
+                         //console.log(' xhr.responseText ===>', xhr.responseText)
+                         var retrivedobj=JSON.parse(xhr.responseText);
+                         //console.log('json data',retrivedobj);
+
+						 var listofprice=JSON.stringify(retrivedobj.priceList);
+						 localStorage.setItem('listofprice',listofprice);
+						 //console.log("5 days price list",listofprice);
+						
+						var gain = retrivedobj.resultValues.totalGain;
+						// console.log("syuggyygyuyu" , gain);
+						
+						if(gain > 0){
+							console.log("thisis ===");
+							document.getElementById('result_loss').style.display = 'none';
+						}
+						else{
+							console.log("loss ho raha")
+							document.getElementById('result_profit').style.display = 'none';
+						}
+
+
+
+                     
+                	} else {
+                    	console.log(xhr.statusText);
+                     	
+                        console.log("Not Okay");
+                	}
+            	}
+         	};
+				
+			}
+		</script>
+        <script>
+
+            // console.log('loginResp',localStorage.getItem('loginResp'));
+            var c_code =JSON.parse(localStorage.getItem('loginResp'));
+            //console.log('c_code ===> ',c_code.client_code );
+             var id=c_code.client_code
+            
+            // function sendjsonobj()
+            // {
+            //     return retrivedobj;
+            // }
+				var s_code=localStorage.getItem('securitycode');
+
+				loginObj={
+					clientCode :id,
+					securityCode: s_code
+				}
+
+            var getData='http://localhost:7887/getFulldata'
+            
+         	if (window.XMLHttpRequest || window.ActiveXObject) {
+            	if (window.ActiveXObject) {
+                	try {
+                    	xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                	} catch (exception) {
+                    	xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                	}
+            	} else {
+                	xhr = new XMLHttpRequest();
+            	}
+        	} else {
+            	alert("Your browser does not support XMLHTTP Request...!");
+        	}
+
+        	xhr.open('POST', getData, true); // Make sure file is in same server
+        	// xhr.send(null);
+        	xhr.setRequestHeader('Content-Type', 'application/json');
+            
+
+        	xhr.send(JSON.stringify(loginObj));
+        	xhr.onreadystatechange = function() {
+            	if (xhr.readyState == 4) {
+                	if (xhr.status == 200) {
+                    	//console.log(xhr.statusText);
+                         //console.log(' xhr.responseText ===>', xhr.responseText)
                          var retrivedobj=JSON.parse(xhr.responseText);
                          console.log('json data',retrivedobj);
 
 						 var listofprice=JSON.stringify(retrivedobj.priceList);
 						 localStorage.setItem('listofprice',listofprice);
-						 console.log("5 days price list",listofprice);
+						 //console.log("5 days price list",listofprice);
+						
+						var gain = retrivedobj.resultValues.totalGain;
+						//console.log("syug" , gain);
+						if(gain > 0){
+							//console.log("thisis ===");
+							document.getElementById('result_loss').style.display = 'none';
+						}
+						else{
+							//console.log("loss ho raha")
+							document.getElementById('result_profit').style.display = 'none';
+						}
 
-			
+						document.getElementById('market_price_1').innerHTML = retrivedobj.resultValues.currentNotional;
+						//console.log("uuu" , retrivedobj.securityInfo.currrentPrice );
+						document.getElementById('security_gain_1').innerHTML = retrivedobj.resultValues.totalGain;
+						
+						document.getElementById('market_price_2').innerHTML = retrivedobj.resultValues.currentNotional;
+						//console.log("uuu" , retrivedobj.securityInfo.currrentPrice );
+						document.getElementById('security_gain_2').innerHTML = retrivedobj.resultValues.totalGain;
+
 						document.getElementById('userName').innerHTML=retrivedobj.clientInfo.name;
 						
 						document.getElementById('clientcode').innerHTML=retrivedobj.clientInfo.code;
 
 						document.getElementById('country').innerHTML=retrivedobj.clientInfo.country;
-
+						document.getElementById('currrentPrice').innerHTML=retrivedobj.securityInfo.currrentPrice;
 						document.getElementById('notionalvalue').innerHTML=retrivedobj.securityInfo.notional;
 						document.getElementById('couponrate').innerHTML=retrivedobj.securityInfo.couponRate;
 						document.getElementById('couponfreq').innerHTML=retrivedobj.securityInfo.couponFreq;
+						document.getElementById('tradeDate').innerHTML=retrivedobj.securityInfo.buyDate;
+						document.getElementById('buyprice').innerHTML=retrivedobj.securityInfo.buyPrice;
 
 						document.getElementById('cleanprice').innerHTML=retrivedobj.resultValues.cleanPrice;
 						document.getElementById('dirtyprice').innerHTML=retrivedobj.resultValues.dirtyPrice;
@@ -587,4 +709,14 @@ chart.draw(data, options);
          
             </script>
 
+<script>
+		function noBack()
+		{
+			window.history.forward()
+		}
+	   noBack();
+	   window.onload = noBack;
+	   window.onpageshow = function(evt) { if (evt.persisted) noBack() }
+	   window.onunload = function() { void (0) }
+	</script>
 </body>

@@ -351,23 +351,15 @@
         list-style-type: none;
     }
 </style>
-
 </head>
 <body>
 
-<!-- -------------------------------------------------- -->
+
 <!-- Modal HTML -->
-<!-- -------------------------------------------------- -->
-
 <div>
-	
-<!-- -------------------------------------------------- -->
-<!-- Navigation bar -->
-<!-- -------------------------------------------------- -->
-
 	<nav class="navbar navbar-default navbar-expand-lg navbar-light">
 		<div class="navbar-header d-flex col">
-			<div class="navbar-brand" href="#">Fixed Income<b> Portfolio</b></div>  		
+			<a class="navbar-brand" href="#">Exchange<b>Clearance</b></a>  		
 			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
 				<span class="navbar-toggler-icon"></span>
 				<span class="icon-bar"></span>
@@ -381,22 +373,17 @@
 				<li class="nav-item"><a href="#" class="nav-link">Home</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">About</a></li>			
 				<li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-			</ul>
 
+			</ul>
 			<ul class="nav navbar-nav navbar-right ml-auto">			
 				<li class="nav-item"><a href="#myModal" class="btn btn-primary mt-1 mb-1" class="trigger-btn" data-toggle="modal">Login</a></li>
 			</ul>
 		</div>
-
-<!-- -------------------------------------------------- -->
-<!-- LOGIN -->
-<!-- -------------------------------------------------- -->
-
 		<div id="myModal" class="modal fade">
 			<div class="modal-dialog modal-login">
 				<div class="modal-content">
 					<div class="modal-header">				
-						<h4 class="modal-title">Client Sign In</h4>
+						<h4 class="modal-title">Sign In</h4>
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <p id="req_text"> </p>
@@ -416,18 +403,16 @@
 								</div>
 							</div>
 							<div class="form-group">
-							<button type="button" id = "mysignin" class="btn btn-primary btn-block btn-lg" onclick="webCall()"> 
+								<button type="button" id = "mysignin" class="btn btn-primary btn-block btn-lg" onclick="webCall()"> 
 									Sign In
-							</button>
+								</button>
 							</div>
-							
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</nav>
-
+    </nav>
 		<div class="container" height="400px">
 		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
 		    <!-- Indicators -->
@@ -440,7 +425,7 @@
 		    <!-- Wrapper for slides -->
 		    <div class="carousel-inner">
 		      <div class="item active">
-		        <img src="Images/bonds.jpg" alt="Los Angeles" style="width:100%; height:400px;">
+		        <img src="Images/1.jpg" alt="Los Angeles" style="width:100%; height:400px;">
 		      </div>
 
 		      <div class="item">
@@ -463,8 +448,7 @@
 		    </a>
 		  </div>
 		</div>
-
-		<div class="row" style = "padding-left : 100px; padding-right: 50px ; font: 'Varela Round' ; font-size: 14px">
+        <div class="row" style = "padding-left : 100px; padding-right: 50px ; font: 'Varela Round' ; font-size: 14px">
                 <div class="col-md-4 mb-4" style = "padding-left: 0px">
                         <div class="card h-100">
                           <div class="card-body">
@@ -506,10 +490,10 @@
                     <div class="card-body" style= "float:right ; padding-right: 50px    ">
                       <h4 class="card-title">Connect</h4>
                       <p class="card-text" style: "font-size: 12px" >
-                            <h5 style= "font-size: 12px ; color: #9494b8">Fixed Income Portfolio, India</h5>
+                            <h5>Exchnage Clearance, India</h5>
                             <p style= "font-size: 12px ; color: #9494b8">abcd Tower, xyz Roaad, pqr City</p>
                             <div style="margin: 15px 0;">
-                              <!-- <a href="#"><i class="fa fa-dribbble"></i></a>  -->
+                              <a href="#"><i class="fa fa-dribbble"></i></a> 
                               <a href="#"><i class="fa fa-twitter"></i></a>  
                               <a href="#"><i class="fa fa-linkedin"></i></a>  
                               <a href="#"><i class="fa fa-facebook"></i></a> 
@@ -534,7 +518,7 @@
             <!-- Bootstrap core JavaScript -->
             <script src="vendor/jquery/jquery.min.js"></script>
             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+	
 
 </div> 
 
@@ -552,8 +536,27 @@
                         client_code:c_code,
                         password:pass
             };
-			var baseUrl='http://localhost:7887/login';    
-        	document.getElementById("req_text").innerHTML = "";
+			
+
+
+            
+            function checkpwd(str){
+                var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+                 return re.test(str);
+            }
+
+            function checkform(loginObj)
+            {
+                if(loginObj.uname=="")
+                {
+                    alert("error : username cannot be blank")
+                }
+            }
+            console.log('loginObj',loginObj);
+
+var baseUrl='http://localhost:7887/login';
+            
+        	// document.getElementById("req_text").innerHTML = "Process Started...";
         	if (window.XMLHttpRequest || window.ActiveXObject) {
             	if (window.ActiveXObject) {
                 	try {
@@ -568,7 +571,7 @@
             	alert("Your browser does not support XMLHTTP Request...!");
         	}
 
-        	xhr.open('POST', baseUrl, true);// Make sure file is in same server
+        	xhr.open('POST', baseUrl, true); // Make sure file is in same server
         	// xhr.send(null);
         	xhr.setRequestHeader('Content-Type', 'application/json');
             
@@ -576,38 +579,38 @@
         	xhr.send(JSON.stringify(loginObj));
         	xhr.onreadystatechange = function() {
             	if (xhr.readyState == 4) {
-                	if (xhr.status == 200) 
-						{
+                	if (xhr.status == 200) {
                     	console.log(xhr.statusText);
-                    	//document.getElementById("req_text").innerHTML = "Response State : " + xhr.readyState + "Response Text: " + xhr.responseText;
-						obj = JSON.parse(xhr.response);
+                    	// document.getElementById("req_text").innerHTML = "Response State : " + xhr.readyState + "Response Text: " + xhr.responseText;
+                    
                         // console.log("Okay" ,xhr);
-                        if(obj.status==1)        
+                        if(xhr.responseText!==null)        
                                         {					
-											
-											console.log('xhr.responseText',obj)	;
-											localStorage.setItem('loginResp',JSON.stringify(obj));
-											window.location.href="securitiespage.html";
-										}
-						} 
-						else {
-						console.log("i am here");	
+
+
+                                            obj = JSON.parse(xhr.response);
+
+                                            console.log('xhr.responseText',xhr.response ,obj.client_code)	;
+
+                                            localStorage.setItem('loginResp',JSON.stringify(obj));
+
+                                            window.location.href="file:///C:/Users/Admin/Documents/vs/testing1.html";
+
+                            }
+
+
+                	} else {
                     	console.log(xhr.statusText);
-						document.getElementById("req_text").innerHTML = "Error Code: " + xhr.status + "Error Message: " + xhr.statusText;
-						document.getElementById("req_text").innerHTML ="Invalid Username/Password";   
-						
-						console.log("Not Okay");
-						alert("Wrong Username/Password");
+                    	// document.getElementById("req_text").innerHTML = "Error Code: " + xhr.status + "Error Message: " + xhr.statusText;
+						document.getElementById("req_text").innerHTML ="Invalid Username/Password";
+                        console.log("Not Okay");
                 	}
             	}
         	};
+            }      
+        </script>
 
-        }      
-        
-</script>
-
-
-<script>
+        <script>
         var input = document.getElementById("password");
         input.addEventListener("keyup", function(event) {
             event.preventDefault();
@@ -615,8 +618,6 @@
                 document.getElementById("mysignin").click();
             }
         });
-</script>
-
-
+        </script>
 </body>
 </html>                            

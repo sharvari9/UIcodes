@@ -332,8 +332,8 @@ chart.draw(data, options);
             
                     </ul>
                     <ul class="nav navbar-nav navbar-right ml-auto">			
-							<li class="nav-item"><a href="welcometrial.html" class="btn btn-primary mt-1 mb-1" onclick="noBack()">Logout</a></li>
-						</ul>
+                        <li class="nav-item"><a href="#" class="btn btn-primary mt-1 mb-1">Logout</a></li>
+                    </ul>
                 </div>
         </nav>
 
@@ -363,8 +363,7 @@ chart.draw(data, options);
 					<div id="userName" style=" padding-top: 10px ; padding-left: 10px; width: 200px">userName</div>
 					<div id = "clientcode" style=" padding-top: 10px; padding-left: 10px ;  width: 200px">clientcode</div>
 					<div id="country" style=" padding-top: 10px ; padding-left: 10px; width: 200px">country</div>
-					<div  style=" padding-top: 10px ; padding-left: 10px; width: 200px">Date : 08/03/2018</div>
-					<!-- <p style=" padding-top: 10px ; padding-left: 10px; width: 200px">Date : <div id="date" style="display: inline;" >country</div></p> -->
+
 
                     <!-- <div id="sector2" class="col-sm-6 table" style="background-color: white; font-size: 10px ; height:150px ; width: 180px ; padding-top: 50px">
                             <table class="table">
@@ -395,38 +394,21 @@ chart.draw(data, options);
 <!-- Display screen -->
 <!-- ---------------------------------------------- -->
 <div class="row" style="padding-left: 226px ; padding-top: 52px;">
-	<div class="col-sm-12" style="background-color: white ; height: 300px">
-			 <div id="sector1" class="col-sm-12 table" style="background-color: white; height:200px ; width: 100% ; padding-top: 50px">
+	<div class="col-sm-12" style="background-color: white ; height: 700px">
+			 <div id="sector1" class="col-sm-12 table" style="background-color: white; height:400px ; width: 100% ; padding-top: 50px">
 				<table class="table">
 					<tr class = "item">
 						<th>Security Code</th>
 						<th>Security Name</th>
 						<th>Notional(in $)</th>
 						<th>Buy Price(in $)</th>
-						<th>Trade Date</th>
 						<th>Current Price(in $)</th>
-						<th>Profit/Loss(in $)</th>
-						<th></th>
+						<th>P/L(in %)</th>
+						<th>Button</th>
 					</tr>
 				</table>
 			</div>
-			
-
-			
 	  </div>
-	  <b>
-	<div>
-		Total Notional : $ <p id = "totalNotional" style="display: inline;"></p>
-	</div>
-	<br>
-	<div>
-		Total Current Value : $ <p id = "totalCurrentValue" style="display: inline;"> totalNotional</p>
-	</div>
-	<br>
-	<div>
-		Total Gain/Loss : $ <p id = "totalGain" style="display: inline;"> totalNotional</p>
-	</div>
-</b>
 
 </div>
 
@@ -450,10 +432,9 @@ chart.draw(data, options);
             tr.append("<td id = 'sname" + i + "'>" + json.rows[i].securityName + "</td>");
             tr.append("<td id = 'notional" + i + "'>" + json.rows[i].notional + "</td>");
 			tr.append("<td id = 'bprice" + i + "'>" + json.rows[i].boughtprice + "</td>");
-			tr.append("<td id = 'bdate" + i + "'>" + json.rows[i].tradeDate + "</td>");
 			tr.append("<td id = 'cprice" + i + "'>" + json.rows[i].marketprice + "</td>");
 			tr.append("<td id = 'pl" + i + "'>" + json.rows[i].gainPercentage + "</td>");
-            tr.append("<button id = '" + i + "'>"+ ">>>" + "</button>");
+            tr.append("<button class = 'btn btn-primary' style= 'background-color: gray' id = '" + i + "'>"+ "click me" + "</button>");
 
             $('table').append(tr);
         }
@@ -486,10 +467,6 @@ chart.draw(data, options);
 			u = 'bprice' + id;
             var x4 = document.getElementById(u).textContent;
             console.log(x4);
-
-			u = 'bdate' + id;
-            var x6 = document.getElementById(u).textContent;
-            console.log(x6);
 			
 			u = 'cprice' + id;
             var x5 = document.getElementById(u).textContent;
@@ -553,11 +530,6 @@ chart.draw(data, options);
 						document.getElementById('clientcode').innerHTML=recievedobj.clientInfo.code;
 						document.getElementById('country').innerHTML=recievedobj.clientInfo.country;
 
-						document.getElementById('totalNotional').innerHTML=recievedobj.totalNotional;
-						document.getElementById('totalGain').innerHTML=recievedobj.totalGain;
-						document.getElementById('totalCurrentValue').innerHTML=recievedobj.totalCurrentValue;
-
-						console.log(recievedobj.clientInfo.country , recievedobj.clientInfo.code, recievedobj.clientInfo.name);
 					} else {
                     	console.log(xhr.statusText);
                      	
@@ -570,16 +542,7 @@ chart.draw(data, options);
 
 </script>        
 
-<script>
-		function noBack()
-		{
-			window.history.forward()
-		}
-	   noBack();
-	   window.onload = noBack;
-	   window.onpageshow = function(evt) { if (evt.persisted) noBack() }
-	   window.onunload = function() { void (0) }
-	</script>
+
   
 
 </body>
